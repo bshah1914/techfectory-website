@@ -1,0 +1,240 @@
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import AnimatedSection, { StaggerContainer, StaggerItem } from '../components/AnimatedSection'
+import HowItWorks from '../components/HowItWorks'
+
+const contactInfo = [
+  {
+    title: 'Email Us',
+    value: 'info@techfectory.com',
+    href: 'mailto:info@techfectory.com',
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Call Us',
+    value: '+91 953 713 6284',
+    href: 'tel:+919537136284',
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Follow Us',
+    value: '@techfectory',
+    href: '#',
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+      </svg>
+    ),
+  },
+]
+
+const serviceLinks = [
+  { title: 'Cloud Services', desc: 'Migration, architecture, and managed cloud solutions across AWS, Azure, and GCP.', to: '/cloud-services' },
+  { title: 'Cloud Security', desc: 'Compliance, monitoring, and automated remediation with zero-trust architecture.', to: '/cloud-security' },
+  { title: 'DevOps Solutions', desc: 'CI/CD, IaC, container orchestration, and platform engineering services.', to: '/devops' },
+  { title: 'AI & ML', desc: 'Custom machine learning models, NLP, and intelligent automation solutions.', to: '/ai-ml' },
+]
+
+export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: '', email: '', company: '', service: '', message: '',
+  })
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
+
+  return (
+    <div>
+      {/* Hero */}
+      <section className="pt-32 pb-16 relative overflow-hidden bg-hero-tf">
+        <div className="orb-tf w-[400px] h-[400px] bg-teal-500 -top-40 right-0" />
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+          <nav className="flex items-center gap-2 text-sm mb-8" style={{ color: 'var(--text-muted)' }}>
+            <Link to="/" className="hover:text-teal-500 transition-colors">Home</Link>
+            <span>/</span>
+            <span style={{ color: 'var(--text-secondary)' }}>Contact Us</span>
+          </nav>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}>
+            Contact <span className="gt-tf">Us</span>
+          </h1>
+          <p className="text-lg max-w-2xl" style={{ color: 'var(--text-secondary)' }}>
+            Have a question or ready to get started? We&apos;d love to hear from you. Reach out and we&apos;ll respond within 24 hours.
+          </p>
+        </div>
+      </section>
+
+      {/* Form + Info */}
+      <section className="py-16 lg:py-20">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-5 gap-12">
+            {/* Form */}
+            <AnimatedSection className="lg:col-span-3">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-body)' }}>Full Name</label>
+                    <input
+                      type="text" id="name" name="name" value={formData.name} onChange={handleChange} required
+                      className="w-full px-4 py-3.5 rounded-lg border text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500/30 focus:border-teal-500"
+                      style={{ borderColor: 'var(--border)', background: 'var(--bg-surface)', color: 'var(--text-primary)' }}
+                      placeholder="John Doe"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-body)' }}>Work Email</label>
+                    <input
+                      type="email" id="email" name="email" value={formData.email} onChange={handleChange} required
+                      className="w-full px-4 py-3.5 rounded-lg border text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500/30 focus:border-teal-500"
+                      style={{ borderColor: 'var(--border)', background: 'var(--bg-surface)', color: 'var(--text-primary)' }}
+                      placeholder="john@company.com"
+                    />
+                  </div>
+                </div>
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="company" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-body)' }}>Company</label>
+                    <input
+                      type="text" id="company" name="company" value={formData.company} onChange={handleChange}
+                      className="w-full px-4 py-3.5 rounded-lg border text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500/30 focus:border-teal-500"
+                      style={{ borderColor: 'var(--border)', background: 'var(--bg-surface)', color: 'var(--text-primary)' }}
+                      placeholder="Acme Inc"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="service" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-body)' }}>Service Interest</label>
+                    <select
+                      id="service" name="service" value={formData.service} onChange={handleChange}
+                      className="w-full px-4 py-3.5 rounded-lg border text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500/30 focus:border-teal-500"
+                      style={{ borderColor: 'var(--border)', background: 'var(--bg-surface)', color: 'var(--text-primary)' }}
+                    >
+                      <option value="">Select a service</option>
+                      <option value="cloud-services">Cloud Services</option>
+                      <option value="cloud-security">Cloud Security</option>
+                      <option value="devops">DevOps Solutions</option>
+                      <option value="app-development">App Development</option>
+                      <option value="ai-ml">AI &amp; Machine Learning</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium mb-2" style={{ color: 'var(--text-body)' }}>Message</label>
+                  <textarea
+                    id="message" name="message" value={formData.message} onChange={handleChange} rows={6} required
+                    className="w-full px-4 py-3.5 rounded-lg border text-sm transition-colors resize-none focus:outline-none focus:ring-2 focus:ring-teal-500/30 focus:border-teal-500"
+                    style={{ borderColor: 'var(--border)', background: 'var(--bg-surface)', color: 'var(--text-primary)' }}
+                    placeholder="Tell us about your project, timeline, and any specific requirements..."
+                  />
+                </div>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="submit"
+                  className="btn-tf w-full sm:w-auto"
+                >
+                  Send Message
+                </motion.button>
+              </form>
+            </AnimatedSection>
+
+            {/* Contact Info + Office */}
+            <AnimatedSection delay={0.15} className="lg:col-span-2">
+              <div className="space-y-4">
+                {contactInfo.map((info) => (
+                  <a
+                    key={info.title}
+                    href={info.href}
+                    className="card-tf p-5 flex items-center gap-4 group block hover:border-teal-500/30 transition-colors"
+                  >
+                    <div className="ibox-tf flex-shrink-0">{info.icon}</div>
+                    <div>
+                      <div className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>{info.title}</div>
+                      <div className="text-sm group-hover:text-teal-400 transition-colors" style={{ color: 'var(--text-muted)' }}>{info.value}</div>
+                    </div>
+                  </a>
+                ))}
+              </div>
+
+              {/* Office */}
+              <div className="card-tf p-6 mt-6">
+                <div className="pill-tf text-xs mb-3">OFFICE</div>
+                <p className="text-sm font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>TechFectory HQ</p>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                  Ahmedabad, Gujarat, India
+                </p>
+                <div className="sep-tf my-4" />
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                  <span style={{ color: 'var(--text-secondary)' }} className="font-medium">Hours:</span> Mon - Fri, 9:00 AM - 6:00 PM IST<br />
+                  <span style={{ color: 'var(--text-secondary)' }} className="font-medium">Support:</span> 24/7 for enterprise clients
+                </p>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* Service Links */}
+      <section className="bg-alt-tf py-16 lg:py-20">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <AnimatedSection>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}>
+              Not Sure Where to <span className="gt-tf">Start</span>?
+            </h2>
+            <p className="text-lg max-w-2xl mb-16" style={{ color: 'var(--text-secondary)' }}>
+              Explore our services to find the right solution for your needs, or reach out and we&apos;ll guide you.
+            </p>
+          </AnimatedSection>
+
+          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {serviceLinks.map((link) => (
+              <StaggerItem key={link.title}>
+                <Link to={link.to}>
+                  <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.25 }} className="card-tf p-6 h-full group">
+                    <h3 className="text-sm font-semibold mb-2 group-hover:text-teal-400 transition-colors" style={{ color: 'var(--text-primary)' }}>{link.title}</h3>
+                    <p className="text-xs leading-relaxed mb-4" style={{ color: 'var(--text-muted)' }}>{link.desc}</p>
+                    <svg className="w-4 h-4 group-hover:text-teal-400 group-hover:translate-x-1 transition-all" style={{ color: 'var(--text-muted)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </motion.div>
+                </Link>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <HowItWorks />
+
+      {/* CTA */}
+      <section className="bg-cta-tf py-16 lg:py-20">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+          <AnimatedSection>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}>Ready to optimize your cloud?</h2>
+            <p className="text-lg mb-10 max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
+              Start with a free assessment. We&apos;ll analyze your infrastructure and show you exactly where to save.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link to="/pricing" className="btn-tf">View Pricing</Link>
+              <Link to="/cloud-services" className="btn-tf-outline">Explore Services</Link>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+    </div>
+  )
+}
