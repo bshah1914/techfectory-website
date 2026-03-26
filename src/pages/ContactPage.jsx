@@ -229,7 +229,7 @@ export default function ContactPage() {
               Start with a free assessment. We&apos;ll analyze your infrastructure and show you exactly where to save.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link to="/pricing" className="btn-tf">View Pricing</Link>
+              <Link to="/cloud-services" className="btn-tf">Explore Services</Link>
               <Link to="/cloud-services" className="btn-tf-outline">Explore Services</Link>
             </div>
           </AnimatedSection>

@@ -119,7 +119,7 @@ export default function DevOps() {
             <p className="text-slate-600 text-lg">
               Cutting-edge consulting and engineering to transform your software delivery pipeline from concept to production.
             </p>
-            <div className="sep mx-auto mt-8" />
+            <div className="sep-tf mx-auto mt-8" />
           </div>
         </AnimatedSection>
 

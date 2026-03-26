@@ -315,7 +315,7 @@ export default function CloudServicesPage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/contact" className="btn-tf">Get Started</Link>
-              <Link to="/pricing" className="btn-tf-outline">View Pricing</Link>
+              <Link to="/contact" className="btn-tf-outline">Get a Quote</Link>
             </div>
           </AnimatedSection>
         </div>
